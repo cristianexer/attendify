@@ -17,6 +17,16 @@ class Helper
         return $token;
     }
 
+    public static function check_token($token)
+    {
+        return $token;
+    }
+
+    public static function decrypt($token)
+    {
+        return $token;
+    }
+
  
 }
 

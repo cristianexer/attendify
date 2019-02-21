@@ -1,5 +1,7 @@
 <?php 
 
+require_once 'misc/Helper.php';
+
 class AttendanceController
 {
 
@@ -12,7 +14,7 @@ class AttendanceController
     {
         if(!isset($args['user_id']))
         {
-            return $response->withJson(array('response' => 'Missing Argument'), 400);
+            return $response->withJson(array('response' => 'Missing parameter'), 400);
         }
 
         $attendance = $args['user_id'];
