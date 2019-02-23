@@ -3,7 +3,7 @@ class DB
 {
      protected $pdo;
 
-     public function __construct($file = '../pdo_config.ini')
+     public function __construct($file = 'pdo_config.ini')
      {
 
           if (!$settings = parse_ini_file($file, TRUE)) throw new exception('Unable to open ' . $file . '.');

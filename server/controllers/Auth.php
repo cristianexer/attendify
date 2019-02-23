@@ -35,7 +35,7 @@ class AuthController extends User
         
         $password = Helper::encrypt($body['password']);
         
-         $student_id = $this->get_user_by($body['email'],$password);        
+        $student_id = $this->get_user_by($body['email'],$password);        
 
         if(!isset($student_id))
             return $response->withJson(Array('response'=>'User does not exist.'),400);

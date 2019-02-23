@@ -33,13 +33,13 @@ class User extends DB
 
     protected function exist($email,$password)
     {
-        $check =  $this->fetch("SELECT student_id FROM users WHERE email= ? AND password= ?;",[$email,$password])->rowCount();
+        $check =  $this->fetch("SELECT student_id FROM ".$this->table."  WHERE email= ? AND password= ?;",[$email,$password])->rowCount();
         return $check > 0 ? True : False;
     }
 
     protected function get_user_by($email,$password)
     {
-        $check =  $this->fetch("SELECT student_id FROM users WHERE email= ? AND password= ?;",[$email,$password])->fetch()[0];
+        $check =  $this->fetch("SELECT student_id FROM ".$this->table."  WHERE email= ? AND password= ?;",[$email,$password])->fetch()[0];
 
         return $check;
     }
@@ -55,10 +55,7 @@ class User extends DB
             $student_id
             ]);
 
-        if($creation !== False)
-           return $student_id;
-
-        return False;
+        return $creation !== False ? True : False;
     }
 
     private function migrate()
