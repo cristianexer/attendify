@@ -4,7 +4,7 @@ class Helper
 {
     public static function encrypt($data)
     {
-        return $data;
+        return md5($data);
     }
 
     public static function check_email($email)
@@ -25,6 +25,17 @@ class Helper
     public static function decrypt($token)
     {
         return $token;
+    }
+
+    public static function validate($arr)
+    {
+        foreach($arr as $key => $value)
+        {
+            if(!filter_var($key, $value))
+                return $key;
+        }
+
+        return True;
     }
 
  
