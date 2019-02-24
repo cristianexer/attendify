@@ -1,5 +1,1 @@
-server/vendor
-client/Attendify/.vs
-client/Attendify/Attendify/.vs
-client/Attendify/Attendify/bin
-client/Attendify/Attendify/obj
+vendor
