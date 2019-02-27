@@ -5,8 +5,14 @@ require 'controllers/Attendance.php';
 require 'controllers/Auth.php';
 require 'middlewares/AuthMiddleware.php';
 
+$dotenv = Dotenv\Dotenv::create(__DIR__);
+$dotenv->load();
 
-$app = new \Slim\App();
+$app = new \Slim\App([
+    'settings' => [
+        'displayErrorDetails' => true
+    ]
+]);
 
 /* ======== Endpoints ======== */
 

@@ -3,18 +3,18 @@ class DB
 {
      protected $pdo;
 
-     public function __construct($file = 'pdo_config.ini')
+     public function __construct()
      {
 
-          if (!$settings = parse_ini_file($file, TRUE)) throw new exception('Unable to open ' . $file . '.');
+          //if (!$settings = parse_ini_file($file, TRUE)) throw new exception('Unable to open ' . $file . '.');
           try
           {    
                $this->pdo = new PDO( 
-                    $settings['database']['driver'].
-                    ':host='. $settings['database']['host'] .
-                    ';dbname='. $settings['database']['name'],
-                    $settings['database']['username'],
-                    $settings['database']['password']
+                    getenv('DB_DRIVER').
+                    ':host='. getenv('DB_HOST') .
+                    ';dbname='. getenv('DB_NAME'),
+                    getenv('DB_USERNAME'),
+                    getenv('DB_PASSWORD')
                );
 
           } 
