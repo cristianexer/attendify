@@ -38,11 +38,11 @@ class AuthController extends User
         $student_id = $this->get_user_by($body['email'],$password);        
 
         if(!isset($student_id))
-            return $response->withJson(Array('response'=>'User does not exist.'),400);
+            return $response->withJson(Array('response' => 'User does not exist.'),400);
         
-        $token = Helper::sign_token($student_id);
+        $token = Helper::sign_token(Array('student_id' => $student_id));
         
-        return $response->withJson(Array('response'=> 'Success', 'token' => $token),200);
+        return $response->withJson(Array('response' => 'Success', 'token' => $token),200);
     }
 
     public function register($request, $response, $args) 
@@ -52,29 +52,30 @@ class AuthController extends User
         $this->validation($body,$response);
 
         if(!isset($body['first_name']) || !isset($body['last_name']))
-            return $response->withJson(Array('response'=>'Missing First Name or Last Name'),400);
+            return $response->withJson(Array('response' => 'Missing First Name or Last Name'),400);
 
         $secondValidation = Helper::validate([
             $body['first_name'] => FILTER_SANITIZE_STRING,
             $body['last_name'] => FILTER_SANITIZE_STRING,
         ]);
+        
         if($secondValidation != True)
-            return $response->withJson(Array('response'=>'Harmful code detected on '.(string)$secondValidation),400);
+            return $response->withJson(Array('response' => 'Harmful code detected on '.(string)$secondValidation),400);
 
         $password = Helper::encrypt($body['password']);
         
         if($this->exist($body['email'],$password))
-            return $response->withJson(Array('response'=>'An User with this email address already exists.'),400);
+            return $response->withJson(Array('response' => 'An User with this email address already exists.'),400);
         
         
         $student_id = $this->create_user($body['first_name'],$body['last_name'],$body['email'],$password);        
         
         if(!$student_id)
-            return $response->withJson(Array('response'=>'There was an error and your account could not be created.'),400);
+            return $response->withJson(Array('response' => 'There was an error and your account could not be created.'),400);
 
         $token = Helper::sign_token($student_id);
 
-        return $response->withJson(Array('response'=> 'Success', 'token' => $token),200);
+        return $response->withJson(Array('response' => 'Success', 'token' => $token),200);
     }
 }
 

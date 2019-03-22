@@ -1,6 +1,0 @@
-runtime: php72
-
-env_variables:
-  CLOUDSQL_DSN: "mysql:dbname=attendify;unix_socket=/cloudsql/attendify"
-  CLOUDSQL_USER: app
-  CLOUDSQL_PASSWORD: "attendify"

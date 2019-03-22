@@ -1,5 +1,8 @@
 <?php
 
+use \Firebase\JWT\JWT;
+
+
 class Helper
 {
     public static function encrypt($data)
@@ -12,9 +15,9 @@ class Helper
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
-    public static function sign_token($token)
+    public static function sign_token($data)
     {
-        return $token;
+        return JWT::encode($data,getenv('APP_SECRET_KEY'));
     }
 
     public static function check_token($token)
@@ -24,7 +27,7 @@ class Helper
 
     public static function decrypt($token)
     {
-        return $token;
+        return (array) JWT::decode($token, getenv('APP_SECRET_KEY'), array('HS256'));
     }
 
     public static function validate($arr)

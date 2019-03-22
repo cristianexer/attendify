@@ -5,6 +5,7 @@ require 'controllers/Attendance.php';
 require 'controllers/Auth.php';
 require 'middlewares/AuthMiddleware.php';
 
+
 $dotenv = Dotenv\Dotenv::create(__DIR__);
 $dotenv->load();
 
@@ -15,6 +16,18 @@ $app = new \Slim\App([
 ]);
 
 /* ======== Endpoints ======== */
+
+// Index endpoint
+
+$app->get('/',function ($request, $response) {
+
+    $Parsedown = new Parsedown();
+    
+    return $Parsedown->text(file_get_contents("./README.md"));    
+
+});
+
+
 
 
 // Authentication endpoints
