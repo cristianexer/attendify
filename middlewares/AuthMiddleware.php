@@ -17,15 +17,10 @@ class AuthMiddleware
 
         $token_meta = Helper::check_token($auth);
         
-        if($token_meta)
-        {
-            return $next($request, $response);
-        }
-        else
-        {
-            return $response->withJson(Array('response'=>$token_meta),400);
+        return $token_meta === True? $next($request, $response) : $response->withJson(Array('response'=> 'Invalid token'),400);
+        
 
-        }
+        
     }
 
 }

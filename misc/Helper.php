@@ -22,12 +22,29 @@ class Helper
 
     public static function check_token($token)
     {
-        return $token;
+        try
+        { 
+            $decodejwt = (array) JWT::decode($token, getenv('APP_SECRET_KEY'), array('HS256'));
+            return True;
+        } 
+        catch(\Exception $e) 
+        { 
+            return $e; 
+        }
+
     }
 
     public static function decrypt($token)
     {
-        return (array) JWT::decode($token, getenv('APP_SECRET_KEY'), array('HS256'));
+        try
+        { 
+            $decodejwt = (array) JWT::decode($token, getenv('APP_SECRET_KEY'), array('HS256'));
+            return $decodejwt;
+        } 
+        catch(\Exception $e) 
+        { 
+            return $e; 
+        }
     }
 
     public static function validate($arr)
