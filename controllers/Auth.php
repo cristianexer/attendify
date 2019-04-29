@@ -77,6 +77,18 @@ class AuthController extends User
 
         return $response->withJson(Array('response' => 'Success', 'token' => $token),200);
     }
+
+    public function student($request, $response, $args)
+   {
+        $body = $request->getParsedBody();
+        $student_id = $this->get_student_id_by($body['email']);
+
+        if($student_id)
+            return $response->withJson(Array('student_id'=>$student_id),200);
+
+        return $response->withJson(Array('response'=>"The student with ".$body['email']." email address does not exists"),400);
+   }
+
 }
 
 ?>

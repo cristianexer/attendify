@@ -55,6 +55,7 @@ class Attendance extends DB
         return $creation !== False ? True : False;
     }
 
+
     private function migrate()
     {
         return $this->create_table($this->table, $this->columns);

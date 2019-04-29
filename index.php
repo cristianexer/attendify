@@ -4,7 +4,7 @@ require 'vendor/autoload.php';
 require 'controllers/Attendance.php';
 require 'controllers/Auth.php';
 require 'middlewares/AuthMiddleware.php';
-
+require 'middlewares/AdminMiddleware.php';
 
 $dotenv = Dotenv\Dotenv::create(__DIR__);
 $dotenv->load();
@@ -35,6 +35,7 @@ $app->get('/',function ($request, $response) {
 $app->post('/login', \AuthController::class . ':login' );
 $app->post('/register', \AuthController::class . ':register' );
 
+$app->get('/student', \AuthController::class . ':student')->add(new AdminMiddleware());
 
 
 // Attendance endpoints

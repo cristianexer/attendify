@@ -61,6 +61,8 @@ class AttendanceController extends Attendance
         return $response->withJson(Array('response'=>'There was an error and your attendance could not be created.'),400);
    }
 
+   
+
 }
 
 ?>

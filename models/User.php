@@ -58,6 +58,13 @@ class User extends DB
         return $creation !== False ? True : False;
     }
 
+    protected function get_student_id_by($email)
+    {
+        $check =  $this->fetch("SELECT student_id FROM ".$this->table."  WHERE email= ?;",[$email])->fetch()[0];
+
+        return $check;
+    }
+
     private function migrate()
     {
         return $this->create_table($this->table, $this->columns);

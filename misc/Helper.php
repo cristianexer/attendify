@@ -34,6 +34,20 @@ class Helper
 
     }
 
+    public static function check_admin_token($token)
+    {
+        try
+        { 
+            $decodejwt = (array) JWT::decode($token, getenv('APP_SECRET_ADMIN_KEY'), array('HS256'));
+            return True;
+        } 
+        catch(\Exception $e) 
+        { 
+            return $e; 
+        }
+
+    }
+
     public static function decrypt($token)
     {
         try
